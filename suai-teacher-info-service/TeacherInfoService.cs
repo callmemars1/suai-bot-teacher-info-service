@@ -16,11 +16,11 @@ public class GrpcTeacherInfoService : TeacherInfoProvider.TeacherInfoProviderBas
         _logger = loggerFactory?.GetLogger(GetType().Name);
     }
 
-    public override Task<TeacherInfoReply> GetTeacherInfo(TeacherInfoRequest request, ServerCallContext context)
+    public async override Task<TeacherInfoReply> GetTeacherInfo(TeacherInfoRequest request, ServerCallContext context)
     {
-        var findedTeachers = _teacherInfoProvider.GetTeacherInfoAsync(request.LastName).Result;
+        var findedTeachers = await _teacherInfoProvider.GetTeacherInfoAsync(request.LastName);
         var reply = new TeacherInfoReply();
         reply.Teachers.AddRange(findedTeachers);
-        return Task.FromResult(reply);
+        return reply;
     }
 }

@@ -39,15 +39,15 @@ public class PgTeacherInfoProvider : ITeacherInfoProvider
         {
             while (reader.Read())
             {
-                var name = reader["first_name"].ToString();
-                var secondName = reader["second_name"].ToString();
-                var lastName_ = reader["last_name"].ToString();
-                _logger?.Info("finded person with {} {} {}", name, secondName, lastName_);
+                var firstNameFinded = reader["first_name"].ToString();
+                var secondNameFinded = reader["second_name"].ToString();
+                var lastNameFinded = reader["last_name"].ToString();
+                _logger?.Info("Finded person {} {} {}", firstNameFinded, secondNameFinded, lastNameFinded);
                 findedTeachers.Add(new()
                 {
-                    FirstName = name,
-                    SecondName = secondName,
-                    LastName = lastName_,
+                    FirstName = firstNameFinded,
+                    SecondName = secondNameFinded,
+                    LastName = lastNameFinded,
                 });
             }
         }
@@ -70,15 +70,15 @@ public class PgTeacherInfoProvider : ITeacherInfoProvider
         {
             while (reader.Read())
             {
-                var name = reader["first_name"].ToString();
-                var secondName = reader["second_name"].ToString();
-                var lastName_ = reader["last_name"].ToString();
-                _logger?.Info("finded person with {} {} {}", name, secondName, lastName_);
+                var firstNameFinded = reader["first_name"].ToString();
+                var secondNameFinded = reader["second_name"].ToString();
+                var lastNameFinded = reader["last_name"].ToString();
+                _logger?.Info("Finded person {} {} {}", firstNameFinded, secondNameFinded, lastNameFinded);
                 findedTeachers.Add(new()
                 {
-                    FirstName = name,
-                    SecondName = secondName,
-                    LastName = lastName_,
+                    FirstName = firstNameFinded,
+                    SecondName = secondNameFinded,
+                    LastName = lastNameFinded,
                 });
             }
         }
