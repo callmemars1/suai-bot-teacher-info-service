@@ -6,5 +6,5 @@ RUN dotnet publish -c release -o /teacher-info-service --no-restore
 
 FROM mcr.microsoft.com/dotnet/runtime:6.0
 WORKDIR /teacher-info-service
-COPY --from=build-env /teacher-info-service/bin/Release/net6.0/ .
+COPY --from=build-env ./teacher-info-service .
 ENTRYPOINT ["dotnet", "suai-teacher-info-service.dll"]

@@ -30,9 +30,11 @@
 		<Protobuf Include="protos\TeacherService.proto" />
 	</ItemGroup>
 
-	<Target Name="CopyCustomContent" AfterTargets="AfterBuild">
-		<Copy SourceFiles="Logging\nlog.config" DestinationFolder="$(OutDir)" />
-	</Target>
+	<ItemGroup>
+	  <None Update="Logging\nlog.config">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(OS)' == 'Windows_NT'">
 		<Exec Command="rd &quot;$(ProjectDir)obj&quot; /s /q" />

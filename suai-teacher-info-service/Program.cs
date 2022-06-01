@@ -4,7 +4,7 @@ using Suai.Bot.TeacherInfo.Proto;
 using Suai.TeacherInfo.Service;
 using Suai.TeacherInfo.Service.Database;
 
-LogManager.LoadConfiguration("nlog.config");
+LogManager.LoadConfiguration(@"Logging/nlog.config");
 var logger = LogManager.GetCurrentClassLogger();
 
 logger.Info("started");
@@ -30,8 +30,6 @@ Server server = new()
 
 server.Start();
 
-Console.WriteLine("TeacherInfo server listening on port " + grpcPort);
-Console.WriteLine("Press any key to stop the server...");
-Console.ReadKey();
+logger.Info("Server listening on {}", grpcPort);
 
-server.ShutdownAsync().Wait();
+while (true) { }
