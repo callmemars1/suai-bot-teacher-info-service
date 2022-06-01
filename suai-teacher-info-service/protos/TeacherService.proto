@@ -1,0 +1,35 @@
+﻿syntax = "proto3";
+
+package SuaiTeacherInfo;
+
+option csharp_namespace = "Suai.Bot.TeacherInfo.Proto";
+
+service TeacherInfoProvider
+{
+	rpc GetTeacherInfo (TeacherInfoRequest) returns (TeacherInfoReply);
+}
+
+message TeacherInfoRequest 
+{
+	string lastName = 1;
+}
+
+message TeacherInfoReply
+{
+	repeated TeacherInfoDto teachers = 1;
+}
+
+message TeacherInfoDto
+{
+	string firstName = 1;
+	string secondName = 2;
+	string lastName = 3;
+	string institute = 4;
+	string department = 5;
+	string phone = 6;
+	string email = 7;
+	string academicDegree = 8;
+	string teacherDegree = 9;
+	string position = 10;
+	string classRoom = 11;
+}
