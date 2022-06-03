@@ -18,9 +18,11 @@ public class GrpcTeacherInfoService : TeacherInfoProvider.TeacherInfoProviderBas
 
     public async override Task<TeacherInfoReply> GetTeacherInfo(TeacherInfoRequest request, ServerCallContext context)
     {
+        _logger?.Warn("Accepted");
         var findedTeachers = await _teacherInfoProvider.GetTeacherInfoAsync(request.LastName);
         var reply = new TeacherInfoReply();
         reply.Teachers.AddRange(findedTeachers);
+        _logger.Info("returning");
         return reply;
     }
 }

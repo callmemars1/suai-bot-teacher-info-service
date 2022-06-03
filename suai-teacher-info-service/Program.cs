@@ -14,6 +14,7 @@ var dbName = Environment.GetEnvironmentVariable("DB_NAME") ?? throw new Argument
 var dbUser = Environment.GetEnvironmentVariable("DB_USER") ?? throw new ArgumentException("NO DB_USER ENV");
 var dbPass = Environment.GetEnvironmentVariable("DB_PASS") ?? throw new ArgumentException("NO DB_PASS ENV");
 var grpcPort = Convert.ToInt32(Environment.GetEnvironmentVariable("GRPC_PORT") ?? throw new ArgumentException("NO GRPC_PORT ENV"));
+var listenAddr = Environment.GetEnvironmentVariable("LISTEN_ADDR") ?? throw new ArgumentException("NO LISTEN_ADDR ENV");
 
 var dbReader = new PgTeacherInfoProvider(new PostgresDatabaseConnectionParams(
     Host: dbHost,
@@ -25,10 +26,13 @@ var dbReader = new PgTeacherInfoProvider(new PostgresDatabaseConnectionParams(
 Server server = new()
 {
     Services = { TeacherInfoProvider.BindService(new GrpcTeacherInfoService(dbReader, new NLogFactory())) },
-    Ports = { new ServerPort("0.0.0.0", grpcPort, ServerCredentials.Insecure) }
+    Ports = { new ServerPort(listenAddr, grpcPort, ServerCredentials.Insecure) }
 };
 
 server.Start();
+
+/*var service = new GrpcTeacherInfoService(dbReader, new NLogFactory());
+var service.GetTeacherInfo("Агеев");*/
 
 logger.Info("Server listening on {}", grpcPort);
 
